@@ -1,0 +1,384 @@
+.logo-size {
+  width: 120px;
+}
+
+.logo-size-mobile {
+  width: 40px;
+}
+
+/*  home page */
+.hero-section {
+  /* background-image: url("https://i.ibb.co/0FJm4rM/jeans-hero.png"); */
+  background-color: var(--black-600);
+  height: 50rem;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  z-index: -1;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hero-heading {
+  width: 60rem;
+  text-align: center;
+}
+
+.hero-subheading {
+  width: 40rem;
+  text-align: center;
+}
+
+/* categories */
+
+.six-column-grid-container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-flow: dense;
+  align-items: center;
+  justify-items: center;
+}
+
+.span-column-2 {
+  grid-column: span 2;
+}
+
+.span-column-3 {
+  grid-column: span 3;
+}
+.span-column-4 {
+  grid-column: span 4;
+}
+.span-column-5 {
+  grid-column: span 5;
+}
+.span-column-6 {
+  grid-column: span 6;
+}
+
+.span-row-1 {
+  grid-row: span 1;
+}
+
+.grid-item {
+  background-color: blueviolet;
+}
+
+/* cards */
+
+.offer-container {
+  display: flex;
+  padding: 0 20%;
+  justify-content: space-evenly;
+}
+
+.basic-round-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.round-card-img {
+  width: 13rem;
+  height: 13rem;
+}
+
+.round-card-img:hover {
+  transition: 0.2s;
+  transform: scale(1.01);
+}
+
+.feature-cards-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 2% 5%;
+  margin-bottom: 2rem;
+}
+
+.feature-card {
+  width: 20rem;
+  height: 30rem;
+  box-shadow: 0px 0px 5px var(--black-100);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: var(--sp-md);
+  border-radius: var(--radius-sm);
+}
+
+.feature-card:hover {
+  background-color: var(--blue-300);
+  color: var(--black-000);
+  transition: 0.3s;
+}
+
+.feature-card:hover:nth-of-type(2n-1) {
+  background-color: var(--black-400);
+  color: var(--black-000);
+  transition: 0.3s;
+}
+
+.feature-icon {
+  font-size: 6rem;
+}
+.feature-card-heading {
+  font-size: var(--tx-20);
+  font-weight: var(--tx-medium);
+  text-align: center;
+}
+
+.feature-card-subheading {
+  font-size: var(--tx-16);
+  font-weight: var(--tx-regular);
+  text-align: center;
+}
+
+/* categroy */
+.category-image {
+  width: 85%;
+}
+
+.category-grid {
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 600px) {
+  .hero-section {
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    /* background-image: url("https://i.ibb.co/MSPt0Sf/jeans-hero-small.png"); */
+    justify-content: center;
+  }
+  .hero-content {
+    text-align: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  .hero-heading {
+    width: 80%;
+  }
+
+  .hero-subheading {
+    width: 70%;
+  }
+
+  .feature-card {
+    width: 25rem;
+    height: 25rem;
+  }
+
+  .six-column-grid-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  .offer-container {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 0%;
+  }
+  .round-card-img {
+    width: 25rem;
+    height: 25rem;
+  }
+  .feature-cards-container {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0;
+  }
+  .category-image {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+  }
+}
+
+/* auth screen */
+#auth-main-container {
+  padding: 1% 4%;
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.tx-none {
+  text-decoration: none;
+}
+.login-signup-card {
+  box-shadow: 0px 0px 5px var(--black-100);
+  padding: 2%;
+  border-radius: var(--radius-sm);
+}
+
+.flex-between-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1%;
+}
+
+.tabs-container {
+  display: flex;
+}
+
+.tabs {
+  flex-basis: 49%;
+  margin: 0 1rem;
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+}
+
+.tabs-active {
+  border-bottom: 5px solid var(--primary-200);
+  background-color: var(--black-000);
+  flex-basis: 49%;
+  margin: 0 1rem;
+}
+
+.pill-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* category pill */
+.pill-bordered {
+  border: 2px solid var(--black-500);
+}
+
+/* skeleton css */
+
+/* skeleton css */
+.skeleton-container {
+  border-radius: 1rem;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.skeleton-circle {
+  padding: 5rem;
+  background-color: var(--black-100);
+  border-radius: 50%;
+}
+
+.skeleton-item-image {
+  padding: 1rem;
+  background-color: var(--black-000);
+  height: 20rem;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-item-button {
+  padding: 1rem;
+  /* background-color: var(--black-000); */
+  height: 5rem;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: var(--black-100);
+  }
+  100% {
+    background-color: var(--black-000);
+  }
+}
+
+/* empty state css */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  gap: 5px;
+  border: 2px dashed var(--black-100);
+  border-radius: 1rem;
+}
+
+.empty-state-image {
+  width: auto;
+  height: 250px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.empty-state-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* modal  */
+.modal {
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.789);
+  width: 100%;
+  height: 100%;
+}
+
+/* note listing */
+.note-listing-container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 2rem;
+}
+
+.container-lg {
+  width: 28rem;
+}
+
+@media (max-width: 600px) {
+  .container-lg {
+    width: 100%;
+  }
+}
+
+/* create note  */
+.create-note-container {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 20px;
+  background-color: white;
+  padding: 1rem;
+}
+
+.note-description-area {
+  height: 28rem;
+  margin-bottom: 1rem;
+}
+
+/* extra css */
+.pointer {
+  cursor: pointer;
+}

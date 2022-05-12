@@ -1,3 +1,11 @@
+import { NoteCard } from "../components/NoteCard";
+
 export const NoteListing = () => {
-    return <h1>Note Listing page</h1>
-}
+  return (
+    <div className="note-listing-container">
+      {[1, 2, 3, 4, 5].map((item) => (
+        <NoteCard />
+      ))}
+    </div>
+  );
+};
