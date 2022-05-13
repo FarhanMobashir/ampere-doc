@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import { CustomedNavLink } from "./CustomNavlink";
-
 const NavigationRoutes = [
   {
     title: "All Notes",
@@ -24,7 +24,17 @@ const NavigationRoutes = [
   },
 ];
 
+const publicRouteData = [
+  {
+    title: "Signin",
+    route: "/auth",
+    icon: "user-circle",
+  },
+];
+
 export const DrawerMenu = ({ onClick }) => {
+  const { isAuthenticated } = useAuth();
+
   return (
     <>
       <div
@@ -54,18 +64,43 @@ export const DrawerMenu = ({ onClick }) => {
         <h1 class="h4 list-title flex-between-container">
           Menu <i className="uil uil-times" onClick={onClick}></i>
         </h1>
-        {NavigationRoutes.map((item) => {
-          return (
-            <CustomedNavLink key={item.title} to={item.route} onClick={onClick}>
-              <li className="tx-18">
-                <i class={`uil uil-${item.icon} tx-24`}></i> {item.title}
-              </li>
-            </CustomedNavLink>
-          );
-        })}
-        <Link to="/notes/create" onClick={onClick}>
-          <button className="btn btn-primary">Create Note +</button>
-        </Link>
+        {isAuthenticated() &&
+          NavigationRoutes.map((item) => {
+            return (
+              <CustomedNavLink
+                key={item.title}
+                to={item.route}
+                onClick={onClick}
+              >
+                <li className="tx-18">
+                  <i class={`uil uil-${item.icon} tx-24`}></i> {item.title}
+                </li>
+              </CustomedNavLink>
+            );
+          })}
+        {isAuthenticated() && (
+          <Link
+            className="btn btn-primary"
+            to="/notes/create"
+            onClick={onClick}
+          >
+            Create Note +
+          </Link>
+        )}
+        {!isAuthenticated() &&
+          publicRouteData.map((item) => {
+            return (
+              <CustomedNavLink
+                key={item.title}
+                to={item.route}
+                onClick={onClick}
+              >
+                <li className="tx-18">
+                  <i class={`uil uil-${item.icon} tx-24`}></i> {item.title}
+                </li>
+              </CustomedNavLink>
+            );
+          })}
       </ul>
     </>
   );

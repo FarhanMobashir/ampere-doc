@@ -2,9 +2,9 @@ import { Checkbox } from "./Checkbox";
 import { Input } from "./Input";
 import React from "react";
 import axios from "axios";
-// import { AuthContext } from "../contexts/AuthContext";
+import { useAuth } from "../contexts/AuthContext";
 import { useToggle } from "../hooks/useToggle";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const AuthForm = () => {
   const [email, setEmail] = React.useState("");
@@ -14,12 +14,12 @@ export const AuthForm = () => {
   const [name, setName] = React.useState("");
   const onLogin = useToggle(false);
   const navigate = useNavigate();
-
-  // const { login } = React.useContext(AuthContext);
+  const location = useLocation();
+  const { login } = useAuth();
 
   const guestLoginCredential = {
-    email: "adarshbalika@gmail.com",
-    password: "adarshBalika123",
+    email: "d@d.com",
+    password: "1234",
   };
 
   function signupValidation(password, confirmPassword, name) {
@@ -71,10 +71,13 @@ export const AuthForm = () => {
 
   function guestLogin(e) {
     axios
-      .post("/api/auth/login", guestLoginCredential)
+      .post("https://doc-backend.herokuapp.com/signin", guestLoginCredential)
       .then((res) => {
-        // login(res.data.encodedToken);
-        navigate("/");
+        login(res.data.token);
+        const lastRoute = location?.state?.from?.pathname || "/notes";
+        navigate(lastRoute);
+        // navigate("/");
+        console.log(res.data.token);
       })
       .catch((err) => console.log(err));
   }
