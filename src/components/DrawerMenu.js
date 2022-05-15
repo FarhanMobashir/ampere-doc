@@ -32,7 +32,7 @@ const publicRouteData = [
   },
 ];
 
-export const DrawerMenu = ({ onClick }) => {
+export const DrawerMenu = ({ onClick, onCreate }) => {
   const { isAuthenticated } = useAuth();
 
   return (
@@ -79,13 +79,9 @@ export const DrawerMenu = ({ onClick }) => {
             );
           })}
         {isAuthenticated() && (
-          <Link
-            className="btn btn-primary"
-            to="/notes/create"
-            onClick={onClick}
-          >
+          <button className="btn btn-primary" onClick={onCreate}>
             Create Note +
-          </Link>
+          </button>
         )}
         {!isAuthenticated() &&
           publicRouteData.map((item) => {

@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/logo.svg";
 import logoMobile from "../assets/logo-mobile.svg";
 import { DrawerMenu } from "./DrawerMenu";
 import { Link } from "react-router-dom";
-// import { useData } from "../contexts/DataContext";
+import { UIActions, useData } from "../contexts/DataContext";
 export const AppHeader = () => {
-  // const { state: globalState } = useData();
+  const { state: globalState, dispatch: globalDisptach } = useData();
   const [showDrawer, setShowDrawer] = React.useState(false);
+
   return (
     <div
       className="navigation-container"
@@ -15,6 +16,7 @@ export const AppHeader = () => {
         top: "0",
         background: "white",
         boxShadow: "0px 0px 5px grey",
+        zIndex: 999,
       }}
     >
       <div className="upper-container">
@@ -64,7 +66,15 @@ export const AppHeader = () => {
           type="text"
         />
       </div>
-      {showDrawer && <DrawerMenu onClick={() => setShowDrawer(!showDrawer)} />}
+      {showDrawer && (
+        <DrawerMenu
+          onClick={() => setShowDrawer(!showDrawer)}
+          onCreate={() => {
+            globalDisptach({ type: UIActions.showModal, payload: true });
+            setShowDrawer(!showDrawer);
+          }}
+        />
+      )}
     </div>
   );
 };

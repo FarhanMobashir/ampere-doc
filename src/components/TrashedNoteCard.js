@@ -1,16 +1,12 @@
 import { useEffect, useRef } from "react";
 
-export const NoteCard = ({
+export const TrashedNoteCard = ({
   title,
   body,
   noteTag,
   noteColor,
-  onEdit,
-  onPin,
-  onArchive,
   onDelete,
-  onClick,
-  isPinned,
+  onRestore,
 }) => {
   let bodyRef = useRef();
   useEffect(() => {
@@ -22,36 +18,20 @@ export const NoteCard = ({
   return (
     <div
       className="note-card-container container-lg"
-      style={{ borderTop: `10px solid ${noteColor}` }}
+      style={{ borderRight: `10px solid ${noteColor}` }}
     >
       <div className="content-container">
         <div className="card-title-tag-container">
-          <h2 className="card-title tx-20 black-6" onClick={onClick}>
+          <h2 className="card-title tx-20 black-6">
             {title.length > 15 ? title.slice(0, 15) + "..." : title}
           </h2>
           <div className="pill pill-sm bg-black-1 black-5 ">{noteTag}</div>
         </div>
 
-        <div
-          ref={bodyRef}
-          className="card-description black-6"
-          onClick={onClick}
-        ></div>
-        <div className="bottom-container">
-          <button className="btn btn-text " onClick={onEdit}>
-            Edit
-          </button>
+        <div ref={bodyRef} className="card-description black-6"></div>
+        <div className="bottom-container ml-auto">
           <div className="note-card-icon-container">
-            <i
-              className={`uil uil-map-pin note-card-icon ${
-                isPinned ? "note-card-icon-pin-active" : ""
-              }`}
-              onClick={onPin}
-            ></i>
-            <i
-              className="uil uil-archive note-card-icon "
-              onClick={onArchive}
-            ></i>
+            <i className="uil uil-redo note-card-icon " onClick={onRestore}></i>
             <i
               className="uil uil-trash-alt note-card-icon"
               onClick={onDelete}
