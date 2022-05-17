@@ -92,7 +92,7 @@ export const buildHooks = (queryArray, baseQuery, dispatchFn) => {
           dispatch({ type: "IS_LOADING", payload: false });
           componentMounted = true;
         };
-      }, [dispatchFn, urlParams]);
+      }, []);
 
       return { ...state };
     };

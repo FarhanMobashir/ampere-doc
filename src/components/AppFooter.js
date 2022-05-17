@@ -3,9 +3,9 @@ export const AppFooter = () => {
     <footer className="footer">
       {/* <!-- first column --> */}
       <div className="footer-columns">
-        <h4 className="footer-heading">Ampere Videos</h4>
+        <h4 className="footer-heading">Ampere Doc</h4>
         <small className="footer-subheading">
-          Made with ReactJs and Mockbee
+          Made with ReactJs and AmpereUI
         </small>
         <a
           className="footer-link"

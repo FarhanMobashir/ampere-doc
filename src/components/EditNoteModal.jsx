@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { QuillEditor } from "../components/QuillEditor";
+import { QuillEditor } from "./QuillEditor";
 import { noteColors } from "../constants/note-colors";
 import { notePriorityData } from "../constants/notePriority";
 import { useApi } from "../contexts/ApiContext";
 import { UIActions, useData } from "../contexts/DataContext";
 import { Modal } from "./Modal";
 
-export const CreateNoteModal = () => {
+export const EditNoteModal = ({ selectedItem, onClose }) => {
   const modules = {
     toolbar: [
       ["bold", "italic", "underline", "strike"],
@@ -18,34 +18,43 @@ export const CreateNoteModal = () => {
     ],
   };
   const navigate = useNavigate();
-  const [noteBody, setNoteBody] = useState("note body");
-  const [noteTitle, setNoteTitle] = useState("untitled");
-  const [activeColor, setActiveColor] = useState(0);
-  const [noteTag, setNoteTag] = useState("untitled");
-  const [notePriority, setNotePriority] = useState(notePriorityData[1]);
-  const { useCreateSingleNote } = useApi();
+  const [noteBody, setNoteBody] = useState(selectedItem.body || "");
+  const [activeColor, setActiveColor] = useState(
+    noteColors.indexOf(selectedItem.color || 0)
+  );
+  const [noteTitle, setNoteTitle] = useState(selectedItem.title || "");
+  const [noteTag, setNoteTag] = useState(selectedItem.tag || "");
+  console.log(selectedItem.tag || "hey");
+
+  const [notePriority, setNotePriority] = useState(
+    notePriorityData.slice(1)[
+      notePriorityData.slice(1).indexOf(selectedItem.priority)
+    ]
+  );
+  const { useUpdateSingleNote } = useApi();
   const { dispatch: globalDispatch } = useData();
-  const [createNote, { loading: isCreatingNote, data: createdNoteData }] =
-    useCreateSingleNote();
+  const [updateNote, { loading: isUpdatingNote, data: updateNoteData }] =
+    useUpdateSingleNote();
   const createNoteHandler = () => {
     const data = {
-      title: noteTitle.length === 0 ? "untitled" : noteTitle,
-      body: noteBody.length === 0 ? "note body" : noteBody,
+      title: noteTitle,
+      body: noteBody,
       color: noteColors[activeColor],
-      tag: noteTag.toLowerCase() || "untitled",
+      tag: noteTag.toLocaleLowerCase(),
       priority: notePriority,
     };
 
-    createNote(data);
+    updateNote(data, selectedItem._id);
   };
 
   useEffect(() => {
-    if (createdNoteData) {
+    if (updateNoteData) {
       navigate("/notes");
-      globalDispatch({ type: UIActions.showModal, payload: false });
-      toast("created");
+      onClose();
+      toast("updated");
     }
-  }, [createdNoteData]);
+  }, [updateNoteData]);
+  console.log(notePriority);
   return (
     <Modal>
       <div className="create-note-container">
@@ -97,7 +106,11 @@ export const CreateNoteModal = () => {
                 }}
               >
                 {notePriorityData.slice(1).map((item) => (
-                  <option key={item} value={item}>
+                  <option
+                    key={item}
+                    value={item}
+                    selected={selectedItem.priority}
+                  >
                     {item.toUpperCase()}
                   </option>
                 ))}
@@ -108,17 +121,12 @@ export const CreateNoteModal = () => {
         <div className="flex-between-container">
           <button
             className="btn btn-primary"
-            disabled={isCreatingNote}
+            disabled={isUpdatingNote}
             onClick={() => createNoteHandler()}
           >
-            Create +
+            Update
           </button>
-          <button
-            className="btn text-btn"
-            onClick={() =>
-              globalDispatch({ type: UIActions.showModal, payload: false })
-            }
-          >
+          <button className="btn text-btn" onClick={onClose}>
             Close
           </button>
         </div>

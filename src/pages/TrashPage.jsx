@@ -28,7 +28,7 @@ export const TrashPage = () => {
       {trashedNote.map((item) => {
         return (
           <TrashedNoteCard
-            key={item.title}
+            key={item._id}
             title={item.title}
             body={item.body}
             noteTag={item.tag}

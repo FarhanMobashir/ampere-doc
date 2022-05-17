@@ -4,8 +4,10 @@ import logoMobile from "../assets/logo-mobile.svg";
 import { DrawerMenu } from "./DrawerMenu";
 import { Link } from "react-router-dom";
 import { UIActions, useData } from "../contexts/DataContext";
+import { useAuth } from "../contexts/AuthContext";
 export const AppHeader = () => {
-  const { state: globalState, dispatch: globalDisptach } = useData();
+  const { state: globalState, dispatch: globalDispatch } = useData();
+  const { isAuthenticated } = useAuth();
   const [showDrawer, setShowDrawer] = React.useState(false);
 
   return (
@@ -53,7 +55,7 @@ export const AppHeader = () => {
         </div>
 
         <div className="nav-icon-container">
-          <Link to="/auth">
+          <Link to={isAuthenticated() ? "/user" : "/auth"}>
             <i className="badge-icon uil uil-user-circle"></i>
           </Link>
         </div>
@@ -70,7 +72,7 @@ export const AppHeader = () => {
         <DrawerMenu
           onClick={() => setShowDrawer(!showDrawer)}
           onCreate={() => {
-            globalDisptach({ type: UIActions.showModal, payload: true });
+            globalDispatch({ type: UIActions.showModal, payload: true });
             setShowDrawer(!showDrawer);
           }}
         />

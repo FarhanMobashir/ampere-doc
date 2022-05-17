@@ -5,6 +5,8 @@ export const NoteCard = ({
   body,
   noteTag,
   noteColor,
+  noteDate,
+  notePriority,
   onEdit,
   onPin,
   onArchive,
@@ -15,8 +17,9 @@ export const NoteCard = ({
   let bodyRef = useRef();
   useEffect(() => {
     if (body) {
-      bodyRef.current.innerHTML =
-        body.length > 30 ? body.slice(0, 30) + "..." : body;
+      // bodyRef.current.innerHTML =
+      //   body.length > 30 ? body.slice(0, 30) + "..." : body;
+      bodyRef.current.innerHTML = body;
     }
   });
   return (
@@ -27,16 +30,21 @@ export const NoteCard = ({
       <div className="content-container">
         <div className="card-title-tag-container">
           <h2 className="card-title tx-20 black-6" onClick={onClick}>
-            {title.length > 15 ? title.slice(0, 15) + "..." : title}
+            {/* {title.length > 15 ? title.slice(0, 15) + "..." : title} */}
+            {title}
           </h2>
-          <div className="pill pill-sm bg-black-1 black-5 ">{noteTag}</div>
         </div>
 
         <div
           ref={bodyRef}
-          className="card-description black-6"
+          className="note-card-description black-6"
           onClick={onClick}
         ></div>
+        <div className="flex-between-container">
+          <div className="pill pill-sm bg-orange-1 orange-5">{noteTag}</div>
+          <div className="pill pill-sm bg-black-1 black-5">{notePriority}</div>
+          <div className="pill pill-sm bg-blue-1 blue-5">{noteDate}</div>
+        </div>
         <div className="bottom-container">
           <button className="btn btn-text " onClick={onEdit}>
             Edit

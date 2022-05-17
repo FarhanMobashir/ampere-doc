@@ -3,11 +3,7 @@ import { ToastContainer } from "react-toastify";
 import { ActiveUser } from "./components/ActiveUser";
 import { AppLayout } from "./components/AppLayout";
 import { PrivateRoute } from "./components/PrivateRoute";
-import { ApiProvider } from "./contexts/ApiContext";
-import { AuthProvider } from "./contexts/AuthContext";
-import { DataProvider, useData } from "./contexts/DataContext";
 import { AuthPage } from "./pages/AuthPage";
-import { CreateNote } from "./pages/CreateNote";
 import { HomePage } from "./pages/Homepage";
 import { NoteListing } from "./pages/NotesListing";
 import { SingleNote } from "./pages/SingleNote";
@@ -15,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { CreateNoteModal } from "./components/CreateNoteModal";
 import { TrashPage } from "./pages/TrashPage";
 import { ArchivePage } from "./pages/ArchivePage";
+import { useData } from "./contexts/DataContext";
 
 function App() {
   const { state: globalState } = useData();
@@ -34,6 +31,7 @@ function App() {
         theme="dark"
       />
       {globalState.showModal && <CreateNoteModal />}
+
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route path="/auth" element={<AuthPage />} />
