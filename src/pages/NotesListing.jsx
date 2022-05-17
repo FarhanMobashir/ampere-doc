@@ -24,6 +24,9 @@ export const NoteListing = () => {
       toast("Updated");
     }
   }, [updateNoteData]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const allNotes = globalState.notes
     .filter((i) => !i.isTrashed && !i.isArchived && !i.isPinned)
