@@ -5,6 +5,7 @@ import axios from "axios";
 import { useAuth } from "../contexts/AuthContext";
 import { useToggle } from "../hooks/useToggle";
 import { useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const AuthForm = () => {
   const [email, setEmail] = React.useState("");
@@ -22,8 +23,8 @@ export const AuthForm = () => {
     password: "1234",
   };
 
-  function signupValidation(password, confirmPassword, name) {
-    if (name.length >= 3 && password === confirmPassword) {
+  function signupValidation(password, confirmPassword) {
+    if (password === confirmPassword) {
       return true;
     } else {
       return false;
@@ -34,38 +35,39 @@ export const AuthForm = () => {
     e.preventDefault();
 
     if (signupValidation(password, confirmPassword, name) === true) {
-      axios.post("/api/auth/signup", { email, password, name }).then((res) => {
-        setFromValidationStatus("success");
-        // login(res.data.encodedToken);
-        if (res.data.encodedToken) {
-          navigate("/");
-        }
-      });
-    } else if (signupValidation(password, confirmPassword, name) === false) {
-      // setFromValidationStatus("error");
-      // setTimeout(() => {
-      //   setFromValidationStatus("");
-      // }, 1000);
+      axios
+        .post("https://doc-backend.herokuapp.com/signup", {
+          email,
+          password,
+        })
+        .then((res) => {
+          setFromValidationStatus("success");
+          login(res.data.token);
+          if (res.data.token) {
+            navigate("/");
+          }
+        })
+        .catch((err) => {
+          toast(err.response.data.message);
+        });
+    } else if (signupValidation(password, confirmPassword) === false) {
+      toast("paswword didn't matched");
     }
   }
 
   function logIn(e) {
     e.preventDefault();
     axios
-      .post("/api/auth/login", { email, password })
+      .post("https://doc-backend.herokuapp.com/signin", { email, password })
       .then((res) => {
-        // login(res.data.encodedToken);
-        if (res.data.encodedToken) {
-          navigate("/");
+        console.log("res", res);
+        login(res.data.token);
+        if (res.data.token) {
+          navigate("/notes");
         }
-        navigate("/");
       })
       .catch((err) => {
-        console.log("Hello");
-        // setFromValidationStatus("error");
-        // setTimeout(() => {
-        //   setFromValidationStatus("");
-        // }, 1000);
+        toast(err.response.data.message);
       });
   }
 
@@ -144,14 +146,6 @@ export const AuthForm = () => {
                 htmlFor="password"
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 value={confirmPassword}
-              />
-              <Input
-                label="Name"
-                required={false}
-                type="name"
-                htmlFor="name"
-                onChange={(e) => setName(e.target.value)}
-                value={name}
               />
             </>
           ) : null}

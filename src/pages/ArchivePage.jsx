@@ -27,7 +27,7 @@ export const ArchivePage = () => {
       {archivedNote.map((item) => {
         return (
           <ArchivedNoteCard
-            key={item.title}
+            key={item._id}
             title={item.title}
             body={item.body}
             noteTag={item.tag}
