@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import logo from "../assets/logo.svg";
 import logoMobile from "../assets/logo-mobile.svg";
 import { DrawerMenu } from "./DrawerMenu";
@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { UIActions, useData } from "../contexts/DataContext";
 import { useAuth } from "../contexts/AuthContext";
 export const AppHeader = () => {
-  const { state: globalState, dispatch: globalDispatch } = useData();
+  const { dispatch: globalDispatch } = useData();
   const { isAuthenticated } = useAuth();
   const [showDrawer, setShowDrawer] = React.useState(false);
 

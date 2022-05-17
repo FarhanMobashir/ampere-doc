@@ -5,7 +5,7 @@ import { QuillEditor } from "./QuillEditor";
 import { noteColors } from "../constants/note-colors";
 import { notePriorityData } from "../constants/notePriority";
 import { useApi } from "../contexts/ApiContext";
-import { UIActions, useData } from "../contexts/DataContext";
+import { useData } from "../contexts/DataContext";
 import { Modal } from "./Modal";
 
 export const EditNoteModal = ({ selectedItem, onClose }) => {
