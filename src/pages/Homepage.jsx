@@ -21,10 +21,10 @@ export const HomePage = () => {
         </div>
       </div>
       {/* <!-- offer-section --> */}
-      <div className="offer-section">
+      {/* <div className="offer-section">
         <h2 className="h2 tx-center m-20 p-20 black-6">Features</h2>
         <div className="offer-container">
-          {/* {[1,2,3].map((item, idx) => {
+          {[1,2,3].map((item, idx) => {
             return (
               <Link
                 style={{ textDecoration: "none" }}
@@ -40,9 +40,9 @@ export const HomePage = () => {
                 />
               </Link>
             );
-          })} */}
+          })}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
