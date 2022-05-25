@@ -6,7 +6,6 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import { AuthPage } from "./pages/AuthPage";
 import { HomePage } from "./pages/Homepage";
 import { NoteListing } from "./pages/NotesListing";
-import { SingleNote } from "./pages/SingleNote";
 import "react-toastify/dist/ReactToastify.css";
 import { CreateNoteModal } from "./components/CreateNoteModal";
 import { TrashPage } from "./pages/TrashPage";
@@ -50,10 +49,7 @@ function App() {
               path="/notes/create"
               element={<PrivateRoute element={<CreateNote />} />}
             /> */}
-            <Route
-              path="/notes/:id"
-              element={<PrivateRoute element={<SingleNote />} />}
-            />
+
             <Route
               path="/notes/trash"
               element={<PrivateRoute element={<TrashPage />} />}
