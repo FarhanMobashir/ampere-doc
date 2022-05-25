@@ -16,8 +16,7 @@ export const NoteListing = () => {
   const { useGetAllNotes, useUpdateSingleNote } = useApi();
   const { loading: loadingNotes, data: noteData } = useGetAllNotes();
 
-  const [updateNote, { loading: isUpdatingNote, data: updateNoteData }] =
-    useUpdateSingleNote();
+  const [updateNote, { data: updateNoteData }] = useUpdateSingleNote();
 
   useEffect(() => {
     if (updateNoteData) {
@@ -149,7 +148,7 @@ export const NoteListing = () => {
       <div className="note-listing-container">
         {loadingNotes &&
           new Array(10).fill(1).map((i) => <CardSkeleton key={i++} />)}
-        {globalState.notes &&
+        {!loadingNotes &&
           pinnedNotes.map((item) => {
             return (
               <NoteCard
