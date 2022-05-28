@@ -1,6 +1,6 @@
 // import { AuthContext } from "../contexts/AuthContext";
 import React from "react";
-import emptyImage from "../assets/shoppingcart.png";
+import emptyImage from "../assets/girlsitting.svg";
 import { useAuth } from "../contexts/AuthContext";
 import { EmptyState } from "./EmptyState";
 
@@ -10,8 +10,8 @@ export const ActiveUser = () => {
     <div className="m-20 ">
       <EmptyState
         imageUrl={emptyImage}
-        title="Hii there"
-        description="We will love if you stay and shop"
+        title="Welcome User"
+        description="We will love if you stay keep making notes"
         buttonText="Logout"
         onButtonClick={() => logout()}
       />

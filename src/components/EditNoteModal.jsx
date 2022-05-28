@@ -5,7 +5,10 @@ import { QuillEditor } from "./QuillEditor";
 import { noteColors } from "../constants/note-colors";
 import { notePriorityData } from "../constants/notePriority";
 import { useApi } from "../contexts/ApiContext";
+
+
 import { useData } from "../contexts/DataContext";
+
 import { Modal } from "./Modal";
 
 export const EditNoteModal = ({ selectedItem, onClose }) => {
@@ -24,18 +27,12 @@ export const EditNoteModal = ({ selectedItem, onClose }) => {
   );
   const [noteTitle, setNoteTitle] = useState(selectedItem.title || "");
   const [noteTag, setNoteTag] = useState(selectedItem.tag || "");
-  console.log(selectedItem.tag || "hey");
 
-  const [notePriority, setNotePriority] = useState(
-    notePriorityData.slice(1)[
-      notePriorityData.slice(1).indexOf(selectedItem.priority)
-    ]
-  );
+  const [notePriority, setNotePriority] = useState();
   const { useUpdateSingleNote } = useApi();
-  const { dispatch: globalDispatch } = useData();
   const [updateNote, { loading: isUpdatingNote, data: updateNoteData }] =
     useUpdateSingleNote();
-  const createNoteHandler = () => {
+  const updateNoteHandler = () => {
     const data = {
       title: noteTitle,
       body: noteBody,
@@ -53,8 +50,8 @@ export const EditNoteModal = ({ selectedItem, onClose }) => {
       onClose();
       toast("updated");
     }
-  }, [updateNoteData]);
-  console.log(notePriority);
+  }, [updateNoteData, onClose, navigate]);
+  console.log(selectedItem.priority);
   return (
     <Modal>
       <div className="create-note-container">
@@ -104,16 +101,15 @@ export const EditNoteModal = ({ selectedItem, onClose }) => {
                     notePriorityData.slice(1)[e.target.selectedIndex]
                   );
                 }}
+                defaultValue={selectedItem.priority}
               >
-                {notePriorityData.slice(1).map((item) => (
-                  <option
-                    key={item}
-                    value={item}
-                    selected={selectedItem.priority}
-                  >
-                    {item.toUpperCase()}
-                  </option>
-                ))}
+                {notePriorityData.slice(1).map((item) => {
+                  return (
+                    <option key={item} value={item}>
+                      {item.toUpperCase()}
+                    </option>
+                  );
+                })}
               </select>
             </div>
           </div>
@@ -122,7 +118,7 @@ export const EditNoteModal = ({ selectedItem, onClose }) => {
           <button
             className="btn btn-primary"
             disabled={isUpdatingNote}
-            onClick={() => createNoteHandler()}
+            onClick={() => updateNoteHandler()}
           >
             Update
           </button>

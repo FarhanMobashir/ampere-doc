@@ -11,8 +11,6 @@ export const AuthForm = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
-  const [formValidationStatus, setFromValidationStatus] = React.useState("");
-  const [name, setName] = React.useState("");
   const onLogin = useToggle(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -34,14 +32,13 @@ export const AuthForm = () => {
   function signUp(e) {
     e.preventDefault();
 
-    if (signupValidation(password, confirmPassword, name) === true) {
+    if (signupValidation(password, confirmPassword) === true) {
       axios
         .post("https://doc-backend.herokuapp.com/signup", {
           email,
           password,
         })
         .then((res) => {
-          setFromValidationStatus("success");
           login(res.data.token);
           if (res.data.token) {
             navigate("/");
@@ -60,7 +57,6 @@ export const AuthForm = () => {
     axios
       .post("https://doc-backend.herokuapp.com/signin", { email, password })
       .then((res) => {
-        console.log("res", res);
         login(res.data.token);
         if (res.data.token) {
           navigate("/notes");
@@ -78,22 +74,12 @@ export const AuthForm = () => {
         login(res.data.token);
         const lastRoute = location?.state?.from?.pathname || "/notes";
         navigate(lastRoute);
-        // navigate("/");
-        console.log(res.data.token);
       })
       .catch((err) => console.log(err));
   }
 
   return (
     <div id="auth-main-container">
-      {/* {formValidationStatus === "error" && (
-        <Toast
-          type="info"
-          title="Please fill correctly"
-          message="Check the filled field once again"
-        />
-      )} */}
-
       <div className="page-title-wrapper tx-center mv-20">
         <h1 className="h5 black-6">Login | Signup</h1>
       </div>
@@ -154,7 +140,6 @@ export const AuthForm = () => {
               label="Remember me"
               value="remember-me"
               name="remember-me"
-              // onChange={(e) => setRememberMe(e.target.checked)}
             />
             <p className="tx-18 tx-underline blue-4 pointer">Forgot password</p>
           </div>

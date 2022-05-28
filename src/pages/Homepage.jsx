@@ -1,32 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import { RoundImageCard } from "../components/RoundImageCard";
-// import { useApi } from "../contexts/ApiContext";
-// import { useData } from "../contexts/DataContext";
+import { useAuth } from "../contexts/AuthContext";
 
 export const HomePage = () => {
-  //   const { usegetAllCategories } = useApi();
-  //   const { state: globalState } = useData();
-  //   const { loading: isLoadingAllCategories } = usegetAllCategories();
+  const { isAuthenticated } = useAuth();
   return (
     <div id="main">
       <div className="hero-section">
         <div className="hero-content">
-          <p className="hero-heading h2 white-0">Watch amazing videos</p>
+          <p className="hero-heading h2 white-0">Note makingg become easy</p>
           <p className="hero-subheading h6 regular white-0">
-            We bring the most authentic and trending videos to give you full
-            entertainment and information
+            Create and organise notes in an easy and intuitive way
           </p>
-          <Link to="/videos" className="btn btn-primary btn-lg">
-            WATCH NOW
+          <Link
+            to={isAuthenticated() ? "/notes" : "/auth"}
+            className="btn btn-primary btn-lg"
+          >
+            Get Started
           </Link>
         </div>
       </div>
       {/* <!-- offer-section --> */}
-      <div className="offer-section">
+      {/* <div className="offer-section">
         <h2 className="h2 tx-center m-20 p-20 black-6">Features</h2>
         <div className="offer-container">
-          {/* {[1,2,3].map((item, idx) => {
+          {[1,2,3].map((item, idx) => {
             return (
               <Link
                 style={{ textDecoration: "none" }}
@@ -42,9 +40,9 @@ export const HomePage = () => {
                 />
               </Link>
             );
-          })} */}
+          })}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
