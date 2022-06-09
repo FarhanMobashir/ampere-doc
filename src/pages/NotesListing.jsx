@@ -194,6 +194,17 @@ export const NoteListing = () => {
               />
             </div>
           ))}
+        {sortedData.length === 0 && (
+          <EmptyState
+            title="Nothing to show"
+            description="Try creating some nites then you will see it here"
+            buttonText="Create +"
+            onButtonClick={() =>
+              globalDispatch({ type: UIActions.showModal, payload: true })
+            }
+            imageUrl={emptyImage}
+          />
+        )}
         <button
           className="btn btn-primary btn-lg"
           onClick={() =>
@@ -210,15 +221,6 @@ export const NoteListing = () => {
         <EditNoteModal
           onClose={() => setShowEditModal(false)}
           selectedItem={selected}
-        />
-      )}
-      {sortedData.length === 0 && (
-        <EmptyState
-          title="Nothing to show"
-          description="Try creating some nites then you will see it here"
-          buttonText="Create +"
-          onButtonClick={() => console.log("clicked")}
-          imageUrl={emptyImage}
         />
       )}
     </div>
