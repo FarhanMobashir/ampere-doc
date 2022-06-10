@@ -5,8 +5,10 @@ import { useApi } from "../contexts/ApiContext";
 import { useData } from "../contexts/DataContext";
 import { EmptyState } from "../components/EmptyState";
 import emptyImage from "../assets/emptyImage.svg";
+import { useNavigate } from "react-router-dom";
 
 export const TrashPage = () => {
+  const navigate = useNavigate();
   const { state: globalState } = useData();
   const { useGetAllNotes, useDeleteSingleNote, useUpdateSingleNote } = useApi();
   const { loading: loadingNotes, data: noteData } = useGetAllNotes();
@@ -43,7 +45,7 @@ export const TrashPage = () => {
           title="Nothing in trash"
           description="Add some to see here"
           buttonText="Go Back"
-          onButtonClick={() => console.log("clicked")}
+          onButtonClick={() => navigate("/notes")}
           imageUrl={emptyImage}
         />
       )}

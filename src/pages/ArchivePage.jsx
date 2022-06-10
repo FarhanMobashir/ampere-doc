@@ -5,10 +5,12 @@ import { useApi } from "../contexts/ApiContext";
 import { useData } from "../contexts/DataContext";
 import emptyImage from "../assets/emptyImage.svg";
 import { EmptyState } from "../components/EmptyState";
+import { useNavigate } from "react-router-dom";
 
 export const ArchivePage = () => {
+  const navigate = useNavigate();
   const { state: globalState } = useData();
-  const { useGetAllNotes, useDeleteSingleNote, useUpdateSingleNote } = useApi();
+  const { useGetAllNotes, useUpdateSingleNote } = useApi();
   const { loading: loadingNotes, data: noteData } = useGetAllNotes();
 
   const [updateNote, { loading: isUpdatingNote, data: updateNoteData }] =
@@ -41,7 +43,7 @@ export const ArchivePage = () => {
           title="You haven't archived any note"
           description="Archive some to see here"
           buttonText="Go Back"
-          onButtonClick={() => console.log("clicked")}
+          onButtonClick={() => navigate("/notes")}
           imageUrl={emptyImage}
         />
       )}

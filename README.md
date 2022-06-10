@@ -1,70 +1,113 @@
-# Getting Started with Create React App
+## [Ampere-Docs - A Note Taking App](https://ampere-doc.netlify.app/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Table of contents
 
-## Available Scripts
+- [About Ampere-Docs](#about)
+- [Technology and libraries used](#tech)
+- [Pre-requisites and project setup(in local)](#setup)
+- [Let us connect](#connect)
 
-In the project directory, you can run:
+<a name="about"></a>
 
-### `npm start`
+### About Ampere-Docs
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**[Ampere-Docs](https://ampere-doc.netlify.app/)** - a note taking app to note down the things that matter to you
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<a name="features"></a>
 
-### `npm test`
+### Features and demo
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **[Home](https://ampere-doc.netlify.app/)** - a regular landing page.
 
-### `npm run build`
+- **[Notes](https://ampere-doc.netlify.app/)** - all notes at one place(can be accessed only if the user is logged in). Users can
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  - view and edit notes
+  - add new notes
+  - send notes to trash
+  - send notes to archive
+  - change note color
+  - add tags
+  - add priority
+  - sort notes based on tag , priority , and date
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **[Archive Page](https://ampere-doc.netlify.app/)** - List of archived note. Users can
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  - view archived notes
+  - restore archive note
 
-### `npm run eject`
+- **[Trash Page](https://ampere-doc.netlify.app/)** - List of notes sent to trash. User can
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  - view trashed notes
+  - restore trashed note
+  - delete permanently from trash
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **[Authentication](https://ampere-doc.netlify.app/)** - User can login as guest only, login with credentials, signup and logout. Once the user is logged in, they can access their notes.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **[Add note page]https://ampere-doc.netlify.app/)** - add a new note. User can:
+  - add note title
+  - add note body
+  - add tag
+  - add note color
+  - add priority
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<a name="tech"></a>
 
-## Learn More
+### Technologies and libraries used
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- [ReactJS](https://reactjs.org/docs/getting-started.html)
+- [Firebase Authentication](https://firebase.google.com/products/auth)
+- [AmpereUI Component Library](https://ampereui.netlify.app/)
+- [React Router](https://reactrouter.com/docs/en/v6/getting-started/overview)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<a name="highlights"></a>
 
-### Code Splitting
+### Highlights
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **Responsiveness** - This app is completely responsive and can be accessed in all kind of devices.
+- Proper messages for **error/exception handling** across the application
+- Use of **loader** to show status of tasks
 
-### Analyzing the Bundle Size
+<a name="setup"></a>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Pre-requisites and project setup(in local)
 
-### Making a Progressive Web App
+#### Step 1
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Install [NodeJs](https://nodejs.org/en/)(if not already installed)
 
-### Advanced Configuration
+#### Step 2
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Clone dev branch of this repo to local using:
 
-### Deployment
+     git clone https://github.com/FarhanMobashir/ampere-doc.git -b dev
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+#### Step 3
 
-### `npm run build` fails to minify
+Go into the project folder
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+     cd project-name
+
+
+#### Step 4
+
+Install all the npm packages
+
+     npm install
+
+
+#### Step 5
+
+Run the application using:
+
+     npm start
+
+
+The application runs on **localhost:3000**
+
+<a name="connect"></a>
+
+### Let us connect
+
+[<img src="https://user-images.githubusercontent.com/64582473/162154693-eaf76505-59e8-4b6d-8e03-5cac4cd29d5d.png" width="30" height="30">](https://www.linkedin.com/in/mobashirfarhan/) &nbsp;
+[<img src="https://user-images.githubusercontent.com/64582473/162155893-3e273e1a-4a29-47e2-8e39-06b45ab6f6eb.png" width="30" height="30">](https://twitter.com/MobashirFarhan) &nbsp;
+[<img src="https://user-images.githubusercontent.com/64582473/162157812-3e1d6b9b-7729-4137-99cb-8337d6396472.png" width="30" height="30">](https://github.com/FarhanMobashir)
