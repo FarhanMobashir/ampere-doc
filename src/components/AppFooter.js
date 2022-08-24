@@ -9,7 +9,7 @@ export const AppFooter = () => {
         </small>
         <a
           className="footer-link"
-          href="https://github.com/FarhanMobashir/ampere-shop-react"
+          href="https://github.com/FarhanMobashir/ampere-doc"
         >
           Source code
         </a>

@@ -48,7 +48,7 @@ export const AppHeader = () => {
         <div className="search-container-big">
           <i className="search-icon uil uil-search"></i>
           <input
-            placeholder="Search here..."
+            placeholder="Search not implemented"
             className="search-input-big"
             type="text"
           />
@@ -63,7 +63,7 @@ export const AppHeader = () => {
       <div className="search-container-small">
         <i className="search-icon uil uil-search"></i>
         <input
-          placeholder="Search products here..."
+          placeholder="Search not implemented"
           className="search-input-small"
           type="text"
         />
