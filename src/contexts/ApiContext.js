@@ -58,7 +58,7 @@ export const ApiProvider = ({ children }) => {
       },
     ],
     fetchBaseQuery({
-      baseUrl: "https://doc-backend.herokuapp.com/api",
+      baseUrl: "https://ampere-doc-backend.onrender.com/api",
       headers: headers,
     }),
     dataProviderDispatch

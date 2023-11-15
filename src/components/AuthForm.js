@@ -35,7 +35,7 @@ export const AuthForm = () => {
     setLoading(true);
     if (signupValidation(password, confirmPassword) === true) {
       axios
-        .post("https://doc-backend.herokuapp.com/signup", {
+        .post("https://ampere-doc-backend.onrender.com/signup", {
           email,
           password,
         })
@@ -59,7 +59,7 @@ export const AuthForm = () => {
     setLoading(true);
     e.preventDefault();
     axios
-      .post("https://doc-backend.herokuapp.com/signin", { email, password })
+      .post("https://ampere-doc-backend.onrender.com/signin", { email, password })
       .then((res) => {
         login(res.data.token);
         if (res.data.token) {
@@ -76,7 +76,7 @@ export const AuthForm = () => {
   function guestLogin(e) {
     setLoading(true);
     axios
-      .post("https://doc-backend.herokuapp.com/signin", guestLoginCredential)
+      .post("https://ampere-doc-backend.onrender.com/signin", guestLoginCredential)
       .then((res) => {
         login(res.data.token);
         const lastRoute = location?.state?.from?.pathname || "/notes";
